@@ -8,7 +8,8 @@ module.exports = {
     });
 
     try {
-      return await todo.save();
+      await todo.save();
+      return await Todo.find({});
     } catch (err) {
       throw new Error(err);
     }
@@ -17,7 +18,8 @@ module.exports = {
 
   updateTodo: async (_id, updatedTodo) => {
     try {
-      return await Todo.findByIdAndUpdate(_id, {$set: updatedTodo});
+      await Todo.findByIdAndUpdate(_id, {$set: updatedTodo});  
+      return await Todo.find({});
     } catch (err) {
       throw new Error(err);
     }
@@ -25,7 +27,8 @@ module.exports = {
 
   deleteTodo: async _id => {
     try {
-      return await Todo.findByIdAndDelete({_id});
+      await Todo.findByIdAndDelete({_id});
+      return await Todo.find({});
     } catch (err) {
       throw new Error(err);
     }
